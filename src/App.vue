@@ -34,4 +34,8 @@ export default {
   max-width: 1140px;
   margin: 0 auto;
 }
+
+.main-color{
+  background-color: rgb(206, 23, 23);
+}
 </style>
