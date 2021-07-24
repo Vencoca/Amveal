@@ -46,7 +46,8 @@ export default {
   .profile-list{
     display: flex;
     justify-content: center;
-    @media (max-width: 750px) {
+    flex-flow: row wrap;
+    @media (max-width: 550px) {
       flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -64,9 +65,7 @@ export default {
   }
 
   .profile-container{
-    @media (max-width: 750px) {
-        margin: 5px;
-    }
+    margin: 5px;
   }
 }
 
@@ -83,7 +82,7 @@ export default {
   }
 
   .hero-text {
-    position: absolute;
+    position: relative;
     top: 80px;
     height: calc(100vh - 80px);
     display: flex;

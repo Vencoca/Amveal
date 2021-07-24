@@ -38,6 +38,8 @@ export default {
     position: relative;
     margin: 0 5px;
     overflow: hidden;
+    width: 270px;
+    height: 380px;
 }
 .img {
   opacity: 1;
