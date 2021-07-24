@@ -49,6 +49,7 @@ export default {
         scroll = ele.offsetTop - 50;
       }
       window.scrollTo({top:scroll,behavior:'smooth'}); 
+      this.mobileNav = false;
     },
 
     toggleMobileNav(){
@@ -88,6 +89,10 @@ header{
 
   a{
    cursor: pointer; 
+   -webkit-user-select: none;  /* Chrome all / Safari all */
+   -moz-user-select: none;     /* Firefox all */
+   -ms-user-select: none;      /* IE 10+ */
+   user-select: none;          /* Likely future */     
   }
   
   nav{
@@ -98,6 +103,7 @@ header{
     transition: 0.5s ease all;
     width: 90%;
     margin: 0 auto;
+    user-select: none;  
     @media(min-width: 1140px) {
       max-width: 1140px;
     }
@@ -165,7 +171,7 @@ header{
       transform: rotate(180);
     }
 
-    .dropdown-nav{
+    .dropdown-nav{ 
       display: flex;
       flex-direction: column;
       position: fixed;
@@ -180,7 +186,7 @@ header{
       li{
         margin-left: 0;
         .link {
-          color: #000
+          color: #000; 
         }
       }
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section id='Home' class="hero">
-      <div class="hero-text container">
+      <div class=" container hero-text">
         <h4>Diner app</h4>
         <hr />
         <h2>
@@ -83,7 +83,9 @@ export default {
   }
 
   .hero-text {
-    height: 100vh;
+    position: absolute;
+    top: 80px;
+    height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     justify-content: center;
