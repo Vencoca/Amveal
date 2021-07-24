@@ -42,10 +42,9 @@ export default {
 .img {
   opacity: 1;
   display: block;
-  width: 234px;
+  width: 270px;
   backface-visibility: hidden;
-  max-width: 250px;
-  height: 330px;
+  height: 380px;
   object-fit: cover;
   
 }

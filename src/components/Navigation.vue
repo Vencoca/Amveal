@@ -2,23 +2,19 @@
   <header :class="{'scrolled-nav' : scrolledNav}">
     <nav>
       <div class="branding">
-        <img src="@/assets/Logo.png" alt="" srcset="">
+        <a @click='scroll("Home");'><img src="@/assets/Logo.png" alt="" srcset=""></a>
       </div>
       <ul v-show = "!mobile" class="navigation">
-        <li><router-link class="link" :to="{name: 'Home' }">Home</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">About</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">Team</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">Contact</router-link></li>
+        <li><a class="link" @click='scroll("Home");'>Home</a></li>
+        <li><a class="link" @click='scroll("Team");'>Team</a></li>
       </ul>
     <div class="icon">
       <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav}"></i>
     </div>
     <transition name="mobile-nav">
       <ul v-show = "mobileNav" class="dropdown-nav">
-        <li><router-link class="link" :to="{name: 'Home' }">Home</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">About</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">Team</router-link></li>
-        <li><router-link class="link" :to="{name: '' }">Contact</router-link></li>
+        <li><a class="link" @click='scroll("Home");'>Home</a></li>
+        <li><a class="link" @click='scroll("Team");'>Team</a></li>
       </ul>
     </transition>
     </nav>
@@ -44,6 +40,17 @@ export default {
     window.addEventListener('scroll', this.updateScroll);
   },
   methods: {
+    scroll(element){   
+      var ele = document.getElementById(element);
+      var scroll;
+      if (ele.offsetTop == 0){
+        scroll=0;
+      } else {
+        scroll = ele.offsetTop - 50;
+      }
+      window.scrollTo({top:scroll,behavior:'smooth'}); 
+    },
+
     toggleMobileNav(){
       this.mobileNav = !this.mobileNav
     },
@@ -79,6 +86,10 @@ header{
   transition: 0.5s ease all;
   color: #fff;
 
+  a{
+   cursor: pointer; 
+  }
+  
   nav{
     position: relative;
     display: flex;
@@ -112,6 +123,7 @@ header{
       border-bottom: 1px solid transparent;
 
       &:hover{
+        cursor: pointer;
         color: #00afea;
         border-color: #00afea;
 

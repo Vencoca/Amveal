@@ -1,17 +1,21 @@
 <template>
   <div class="home">
-    <section class="hero">
+    <section id='Home' class="hero">
       <div class="hero-text container">
-        <h4>Hero section</h4>
+        <h4>Diner app</h4>
         <hr />
         <h2>
-          Lorem ipsum dolor sit amet, consectetur 
-          adipiscing elit.
+          How did you live without it?
         </h2>
         <hr />
       </div>
+      <div class="wave-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+      </div>
     </section>
-    <section id="team" class="team">
+    <section id="Team" class="team">
       <h2>Our Team</h2>
       <div class="profile-list">
         <Profile firstname="Václav" lastname="Kesler" job="Front-end devloper" imglink="1.jpg" email="kesler@dinerapp.net" v-bind:lands="['cz','gb','de','pl']"/>
@@ -50,6 +54,7 @@ export default {
   }
 
   h2{
+    margin-bottom: 30px;
     text-align: center;
     text-transform: uppercase;
     font-size: 30px;
@@ -69,7 +74,7 @@ export default {
   background-image: url("../assets/hero-bg.png");
   background-attachment: fixed;
   position: relative;
-  height: 100vh;
+  height: calc(100vh + 55px);
 
   img {
     object-fit: cover;
@@ -78,7 +83,7 @@ export default {
   }
 
   .hero-text {
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,7 +98,7 @@ export default {
     h2 {
       font-size: 50px;
       @media (min-width: 550px) {
-        font-size: 80px;
+        font-size: 75px;
       }
     }
 
@@ -108,6 +113,25 @@ export default {
       max-width: 85px;
       margin-top: 16px;
     }
+  }
+  .wave-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+  }
+
+  .wave-divider svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 55px;
+  }
+
+  .wave-divider .shape-fill {
+      fill: #f1f1f1;
   }
 }
 </style>
