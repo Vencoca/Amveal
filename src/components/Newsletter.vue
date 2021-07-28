@@ -67,7 +67,7 @@ export default {
         var popup = document.getElementById("emailPopup");
         console.log(this.validateEmail(this.email))
         if (this.validateEmail(this.email)){
-            //this.sendData();
+            this.sendData();
             popup.classList.remove("show");
             this.popupShow=false;
         } else {
@@ -157,7 +157,7 @@ export default {
         border-radius: 50%;
         position: relative;
         top: -78px;
-        background: linear-gradient(225deg, rgb(20, 20, 177) 5%, var(--main-color) 100%);
+        background: linear-gradient(220deg, rgb(20, 20, 177) 2%, var(--main-color) 70%);
         display: flex;
         align-items: center;
         justify-content: center;
