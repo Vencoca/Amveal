@@ -15,6 +15,14 @@ export default {
 };
 </script>
 
+<style >
+  :root{
+    --main-color: rgb(78, 178, 236);
+    --main-color-darker: rgb(73, 158, 207);
+    --secondary-color: rgb(73, 73, 73);
+  }
+</style>
+
 <style lang="scss">
 * {
   padding: 0;
@@ -35,7 +43,5 @@ export default {
   margin: 0 auto;
 }
 
-.main-color{
-  background-color: rgb(206, 23, 23);
-}
+
 </style>

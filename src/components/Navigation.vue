@@ -7,6 +7,7 @@
       <ul v-show = "!mobile" class="navigation">
         <li><a class="link" @click='scroll("Home");'>Home</a></li>
         <li><a class="link" @click='scroll("Team");'>Team</a></li>
+        <li><a class="link" @click='scroll("Newsletter");'>Newsletter</a></li>
       </ul>
     <div class="icon">
       <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav}"></i>
@@ -15,6 +16,7 @@
       <ul v-show = "mobileNav" class="dropdown-nav">
         <li><a class="link" @click='scroll("Home");'>Home</a></li>
         <li><a class="link" @click='scroll("Team");'>Team</a></li>
+        <li><a class="link" @click='scroll("Newsletter");'>Newsletter</a></li>
       </ul>
     </transition>
     </nav>
@@ -46,7 +48,7 @@ export default {
       if (ele.offsetTop == 0){
         scroll=0;
       } else {
-        scroll = ele.offsetTop - 50;
+        scroll = ele.offsetTop - 70;
       }
       window.scrollTo({top:scroll,behavior:'smooth'}); 
       this.mobileNav = false;
@@ -168,7 +170,9 @@ header{
     }
 
     .icon-active{
-      transform: rotate(180);
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
     }
 
     .dropdown-nav{ 
@@ -198,10 +202,12 @@ header{
     .mobile-nav-enter-from,
     .mobile-nav-leave-to {
       transform: translateX(-250px);
+      -webkit-transform: translateX(-250px);
     }
 
     .mobile-nav-enter-to{
       transform: translateX(0);
+      -webkit-transform: translateX(0);
     }
   }
 }

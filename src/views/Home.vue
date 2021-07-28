@@ -5,7 +5,7 @@
         <h4>Diner app</h4>
         <hr />
         <h2>
-          How did you live without it?
+          Make hotel services easily accessible.
         </h2>
         <hr />
       </div>
@@ -23,22 +23,28 @@
         <Profile firstname="Jan" lastname="Paleček" job="Bussiness" imglink="3.jpg" email="palecek@dinerapp.net" v-bind:lands="['cz','gb','pl']"/> 
       </div>
     </section>
+    <section id="Newsletter" style="padding-bottom:70px">
+        <Newsletter/>
+    </section>
   </div>
 </template>
 
 <script>
 import Profile from '../components/Profile.vue';
+import Newsletter from '../components/Newsletter.vue';
 // @ is an alias to /src
 
 export default {
   name: "Home",
   components: {
-    Profile
+    Profile,
+    Newsletter,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
 .team{
   padding: 40px;
   position: relative;

@@ -103,7 +103,7 @@ export default {
   padding: 7%;
   padding-bottom: 5%;
   height: 100px;
-  background-color: rgb(53, 142, 187);
+  background-color: var(--main-color);
   text-align: center;
   img{
     margin: 0 5px;
