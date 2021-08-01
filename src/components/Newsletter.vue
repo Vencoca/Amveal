@@ -3,8 +3,10 @@
         <div class="Newsletter-wrapper">
             <div class="circleWrap">
                 <div class="circle">
+                    <div class="innerCircle"></div>
                     <i class="far fa-envelope"></i>
                 </div>
+                
             </div>
             <h3>Newsletter</h3>
             <h5>Stay up to date with our latest news.</h5>
@@ -45,7 +47,7 @@ export default {
         })
         .then(response => {
             //handle success
-            console.log(response)
+            response;
             this.resetForm();
         })
         .catch(function (response) {
@@ -65,7 +67,6 @@ export default {
 
     createContact: function(){
         var popup = document.getElementById("emailPopup");
-        console.log(this.validateEmail(this.email))
         if (this.validateEmail(this.email)){
             this.sendData();
             popup.classList.remove("show");
@@ -155,22 +156,30 @@ export default {
         width: 76px;
         height: 76px;
         border-radius: 50%;
+        -webkit-border-radius: 50%;
         position: relative;
         top: -78px;
         background: linear-gradient(220deg, rgb(20, 20, 177) 2%, var(--main-color) 70%);
         display: flex;
         align-items: center;
         justify-content: center;
-        outline-color: white;
-        outline-style: solid;
-        outline-offset: -6px;
-        outline-width: 2px;
         
         i{
             color: white;
             font-size: 35px;
         }
     }
+
+    .innerCircle{
+        position: absolute;
+        width: 66px;
+        height: 66px;
+        border-radius: 50%;
+        border-color:white;
+        border-style: solid;
+        border-width: 2px;
+    }
+    
 }
 
 
