@@ -2,21 +2,21 @@
   <header :class="{'scrolled-nav' : scrolledNav}">
     <nav>
       <div class="branding">
-        <a @click='scroll("Home");'><img src="@/assets/Logo.png" alt="" srcset=""></a>
+        <a @click='scroll("Home");'><img src="@/assets/logo.svg" alt="" srcset=""></a>
       </div>
       <ul v-show = "!mobile" class="navigation">
-        <li><a class="link" @click='scroll("Home");'>Home</a></li>
-        <li><a class="link" @click='scroll("Team");'>Team</a></li>
-        <li><a class="link" @click='scroll("Newsletter");'>Newsletter</a></li>
+        <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
       </ul>
     <div class="icon">
       <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav}"></i>
     </div>
     <transition name="mobile-nav">
       <ul v-show = "mobileNav" class="dropdown-nav">
-        <li><a class="link" @click='scroll("Home");'>Home</a></li>
-        <li><a class="link" @click='scroll("Team");'>Team</a></li>
-        <li><a class="link" @click='scroll("Newsletter");'>Newsletter</a></li>
+        <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
       </ul>
     </transition>
     </nav>
@@ -42,18 +42,10 @@ export default {
     window.addEventListener('scroll', this.updateScroll);
   },
   methods: {
-    scroll(element){   
-      var ele = document.getElementById(element);
-      var scroll;
-      if (ele.offsetTop == 0){
-        scroll=0;
-      } else {
-        scroll = ele.offsetTop - 70;
-      }
-      window.scrollTo({top:scroll,behavior:'smooth'}); 
+    scroll(element){  
+      document.getElementById(element).scrollIntoView(true); 
       this.mobileNav = false;
     },
-
     toggleMobileNav(){
       this.mobileNav = !this.mobileNav
     },
@@ -67,8 +59,31 @@ export default {
       this.mobileNav = false;
       return;
     },
+
     updateScroll() {
       const scrollPosition = window.scrollY
+      var sections = document.getElementsByTagName('section');
+      sections.forEach(element => {
+        if (element.offsetTop <= scrollPosition) {
+          document.querySelectorAll('.active').forEach(function(element){
+            element.setAttribute('class', 'link');
+          })
+          document.querySelectorAll('a[href*=' + element.id + ']').forEach(function(element) {
+            element.setAttribute('class', 'active link');
+          })
+          console.log(document.querySelector('a[href*=' + element.id + ']'))
+        } else if (element.id == "Newsletter"){
+          if (element.offsetTop <= scrollPosition + 70) {
+            document.querySelectorAll('.active').forEach(function(element){
+              element.setAttribute('class', 'link');
+            })
+            document.querySelectorAll('a[href*=' + element.id + ']').forEach(function(element) {
+              element.setAttribute('class', 'active link');
+            })
+          }
+        }
+      });
+
       if(scrollPosition > 50){
         this.scrolledNav = true;
         return;
@@ -78,11 +93,23 @@ export default {
     },
   }
 };
+
+(function() {
+  'use strict';
+
+  
+
+  window.onscroll = function() {
+    
+  };
+})();
 </script>
 
 <style lang="scss" scoped>
+
+
 header{
-  background-color: rgba(0,0,0,0.8);
+  background-color: var(--blue-color);
   z-index: 99;
   width: 100%;
   position: fixed;
@@ -132,17 +159,23 @@ header{
 
       &:hover{
         cursor: pointer;
-        color: #00afea;
-        border-color: #00afea;
-
+        color: var(--red-color);
+        border-color: var(--red-color);
       }
+    }
+
+    .active{
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--red-color) !important;
+      border-color: var(--red-color) !important;
     }
 
     .branding {
       display: flex;
       align-items: center;
       img{
-        width: 50px;
+        width: var(--logo-size);
         transition: 0.5s ease all;
       }
     }
@@ -212,15 +245,20 @@ header{
   }
 }
 .scrolled-nav {
-  background-color:  #000;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  background-color:  transparent;
   nav{
     padding: 8px 0;
     .branding {
       img{
         width: 40px;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        filter: invert(1);
       }
+    }
+    i{
+      filter: invert(1);
+    }
+    .link{
+      color: var(--blue-color);
     }
   }
 }

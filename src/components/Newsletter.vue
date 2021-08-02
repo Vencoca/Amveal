@@ -1,24 +1,16 @@
 <template>
-    <div class="container Newsletter-flexbox">
-        <div class="Newsletter-wrapper">
-            <div class="circleWrap">
-                <div class="circle">
-                    <div class="innerCircle"></div>
-                    <i class="far fa-envelope"></i>
-                </div>
-                
-            </div>
-            <h3>Newsletter</h3>
-            <h5>Stay up to date with our latest news.</h5>
-            <form>
-                <input class= "textField" type="email" name="email" v-model="email" placeholder="Your email adress">
-                <input class= "subscribeButton" type="button" @click="createContact()" value="Subscribe">
-            </form>
-            <div class="popupWrap">
-                <span class="popup" id="emailPopup" :class="{'popup-active' : popupShow}" @click="popPopup()">Enter valid email!</span>
-            </div>
-            <p>Your email is safe with us, we don't spam.</p>
+    <div class="container news">
+        <h1>Newsletter</h1>
+        <h4>Stay up to date with our latest news.</h4>
+        <h4>
+        <form>
+            <input class= "textField" type="email" name="email" v-model="email" placeholder="Your email adress">
+            <input class= "subscribeButton" type="button" @click="createContact()" value="Subscribe">
+        </form></h4>
+        <div class="popupWrap">
+            <h5><span class="popup" id="emailPopup" :class="{'popup-active' : popupShow}" @click="popPopup()">Enter valid email!</span></h5>
         </div>
+        <h5>Your email is safe with us, we don't spam.</h5>
     </div>
 </template>
 
@@ -83,148 +75,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Newsletter-flexbox{
-    display:flex;
-    justify-content: center;
+.news{
     text-align: center;
-    margin-top: 38px;
-
-    .Newsletter-wrapper{
-    padding: 40px;
-    border-radius: 25px;
-    max-width: 700px;
-    min-width: 220px;
-    background-color: var(--secondary-color);
-    width: 100%;
+    h1{
+        color:var(--white-color);
+        margin-bottom: 1rem;  
     }
 
-    h3{
-        font-size: 35px;
-        font-weight: 900;
-        color:var(--main-color);
-        margin-bottom: 10px;  
-        margin-top: -70px; 
+    h4{
+        color:var(--white-color);
+        margin-bottom: 1rem;
     }
 
     h5{
-        color:white;
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    p{
-        font-size: 14px;
-        font-weight: 600;
-        color: rgb(141, 141, 141);
+        color: var(--blue-color);
+        margin-bottom: 1rem;
     }
 
     form{
-        
-        .textField{
-            font-size: 15px;
-            border-radius: 10px;
-            padding: 8px;
-            padding-left: 12px;
-            margin-right: 10px;
-            border-style: none;
-        }
 
-        .subscribeButton{
-            border-radius: 10px;
-            background-color: var(--main-color);
-            color: white;
-            border-style: none;
-            font-size: 15px;
-            padding: 8px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .subscribeButton:hover{
-            background-color: var(--main-color-darker);
-        }
-
-        .subscribeButton:active {
-            transform: translateY(1px);
-        }
+    .textField{
+        font-size: 0.7em;
+        border-radius: 999px;
+        border-style: none;
+        text-align: center;
+        margin-right: 0.7em;
+        padding: 0.4em 1em;
+        background-color: var(--white-color);
     }
 
-    .circleWrap{
-        display: flex;
-        justify-content: center;
+    .subscribeButton{
+        border-radius: 999px;
+        background-color: var(--red-color);
+        color: var(--white-color);
+        border-style: none;
+        font-size: 0.7em;
+        padding: 0.4em 2em;
+        cursor: pointer;
+        font-weight: 600;
     }
-    .circle{
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        position: relative;
-        top: -78px;
-        background: linear-gradient(220deg, rgb(20, 20, 177) 2%, var(--main-color) 70%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        i{
-            color: white;
-            font-size: 35px;
-        }
+    .subscribeButton:hover{
+        background-color: var(--red-color-darker);
     }
 
-    .innerCircle{
-        position: absolute;
-        width: 66px;
-        height: 66px;
-        border-radius: 50%;
-        border-color:white;
-        border-style: solid;
-        border-width: 2px;
+    .subscribeButton:active {
+        transform: translateY(1px);
     }
-    
+    }  
 }
 
+.popupWrap{
+    height: 0;
+}
 
 .popup {
   visibility: hidden;
-  background-color: rgb(189, 66, 66);
-  color: #fff;
+  background-color: var(--red-color);
+  color: var(--white-color);
   text-align: center;
-  border-radius: 6px;
-  padding: 8px 5px;
+  border-radius: 999px;
+  padding: 0.2rem 1rem;
+  bottom:0.3rem;
+  right:18.5%;
   position: relative;
   z-index: 1;
-  left: -50px;
-  top: 14px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
-@media(max-width: 469px) {
-    .popup{
-        left:0px;
-        top: -115px;
-    }
-    .popup::after {
-        border-color:  rgb(189, 66, 66) transparent transparent transparent !important;
-        top: 100%;
-    }
-    .textField{
-        text-align: center;
-    }
-    .subscribeButton{
-        width: 120px;
-    }
-  }
 /* Popup arrow */
 .popup::after {
 content: "";
 position: absolute;
 bottom: 100%;
 left: 50%;
-margin-left: -5px;
-border-width: 5px;
+margin-left: -0.5rem;
+border-width: 0.5rem;
 border-style: solid;
-border-color:   transparent transparent rgb(189, 66, 66) transparent;
+border-color: transparent transparent var(--red-color) transparent;
 }
 
 .popup-active{

@@ -38,15 +38,14 @@ export default {
     position: relative;
     margin: 0 5px;
     overflow: hidden;
-    width: 270px;
-    height: 380px;
 }
+
 .img {
   opacity: 1;
   display: block;
-  width: 270px;
   backface-visibility: hidden;
-  height: 380px;
+  width: 300px;
+  height: 425px;
   object-fit: cover;
   
 }
@@ -103,7 +102,9 @@ export default {
   padding: 7%;
   padding-bottom: 5%;
   height: 100px;
-  background-color: var(--main-color);
+  //color: var(--white-color);
+  color: white;
+  background-color: var(--blue-color);
   text-align: center;
   img{
     margin: 0 5px;
@@ -113,6 +114,9 @@ export default {
     width: 100%;
     justify-content: center;
     margin-bottom: 5px; 
+  }
+  p{
+    font-size: 18px;
   }
 }
 </style>

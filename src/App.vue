@@ -17,10 +17,35 @@ export default {
 
 <style >
   :root{
-    --main-color: rgb(78, 178, 236);
+    --main-color: #36424e;
     --main-color-darker: rgb(73, 158, 207);
     --secondary-color: rgb(73, 73, 73);
+    --blue-color: #36424e;
+    --dark-green-color: #3c7072;
+    --light-green-color: #498989;
+    --red-color: #e53c49;
+    --red-color-darker: #a82832;
+    --white-color: #ddd9d1;
+    --logo-size: 50px;
   }
+
+@media screen and (max-width: 750px){
+  h1{ font-size: 50px;font-weight: 800;font-style: italic;}
+  h2{ font-size: 35px;font-weight: 800;font-style: italic;}
+  h3{ font-size: 35px;font-weight: 600;}
+  h4{ font-size: 18px;font-weight: 400;}
+  h5{ font-size: 14px; font-weight: 400;}
+  :root{font-size: 16px;}
+}
+
+@media screen and (min-width: 750px){
+  h1{ font-size: 110px;font-weight: 800;font-style: italic;}
+  h2{ font-size: 40px;font-weight: 800;font-style: italic;}
+  h3{ font-size: 40px;font-weight: 600;}
+  h4{ font-size: 38px;font-weight: 400;}
+  h5{ font-size: 32px; font-weight: 400;}
+  :root{font-size: 24px;}
+}   
 </style>
 
 <style lang="scss">
@@ -30,6 +55,7 @@ export default {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  scroll-behavior: smooth;
 }
 
 .app {
