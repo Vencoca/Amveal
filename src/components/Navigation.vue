@@ -6,6 +6,7 @@
       </div>
       <ul v-show = "!mobile" class="navigation">
         <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Application");' href="#Application">App</a></li>
         <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
         <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
       </ul>
@@ -15,6 +16,7 @@
     <transition name="mobile-nav">
       <ul v-show = "mobileNav" class="dropdown-nav">
         <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
+        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Application");' href="#Application">App</a></li>
         <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
         <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
       </ul>
@@ -42,7 +44,7 @@ export default {
     window.addEventListener('scroll', this.updateScroll);
   },
   methods: {
-    scroll(element){  
+    scroll(element){ 
       document.getElementById(element).scrollIntoView(true); 
       this.mobileNav = false;
     },
@@ -51,7 +53,7 @@ export default {
     },
     checkScreen(){
       this.windowWidth = window.innerWidth;
-      if(this.windowWidth <= 750){
+      if(this.windowWidth <= 850){
         this.mobile = true;
         return;
       }
@@ -66,19 +68,27 @@ export default {
       sections.forEach(element => {
         if (element.offsetTop <= scrollPosition) {
           document.querySelectorAll('.active').forEach(function(element){
-            element.setAttribute('class', 'link');
+            element.classList.remove('active');
           })
           document.querySelectorAll('a[href*=' + element.id + ']').forEach(function(element) {
-            element.setAttribute('class', 'active link');
+            element.setAttribute('class', element.getAttribute('class')+' active');
           })
-          console.log(document.querySelector('a[href*=' + element.id + ']'))
+          if(element.id == "Team"){
+            document.querySelectorAll('.link').forEach(function(element){
+              element.classList.add('dark');
+            })
+          } else {
+            document.querySelectorAll('.link').forEach(function(element){
+              element.classList.remove('dark');
+            })
+          }
         } else if (element.id == "Newsletter"){
           if (element.offsetTop <= scrollPosition + 70) {
             document.querySelectorAll('.active').forEach(function(element){
-              element.setAttribute('class', 'link');
+              element.classList.remove('active');
             })
             document.querySelectorAll('a[href*=' + element.id + ']').forEach(function(element) {
-              element.setAttribute('class', 'active link');
+              element.setAttribute('class', element.getAttribute('class')+' active');
             })
           }
         }
@@ -93,20 +103,13 @@ export default {
     },
   }
 };
-
-(function() {
-  'use strict';
-
-  
-
-  window.onscroll = function() {
-    
-  };
-})();
 </script>
 
 <style lang="scss" scoped>
 
+.dark{
+  color:var(--blue-color) !important;
+}
 
 header{
   background-color: var(--blue-color);
@@ -177,6 +180,7 @@ header{
       img{
         width: var(--logo-size);
         transition: 0.5s ease all;
+        padding-top: 5px;
       }
     }
 
@@ -194,8 +198,9 @@ header{
       top: 0;
       right: 24px;
       height: 100%;
-
+      
       i{
+        
         cursor: pointer;
         font-size: 24px;
         transition: 0.8s ease all;
@@ -256,9 +261,6 @@ header{
     }
     i{
       filter: invert(1);
-    }
-    .link{
-      color: var(--blue-color);
     }
   }
 }

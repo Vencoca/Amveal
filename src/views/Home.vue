@@ -10,6 +10,16 @@
         <hr />
       </div>
     </section>
+    <section id="Application" class="app">
+      <div class="left"></div>
+      <div class="right">
+        <h1>GET APP</h1>
+        <h1 class="line">NOW</h1>
+        <h1 class="red">SOON</h1>
+        <img src="@/assets/googleandapple.png" alt="" srcset="">
+      </div>
+
+    </section>
     <section id="Team" class="team">
       <h2>Our Team</h2>
       <div class="profile-list">
@@ -39,52 +49,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
-
-.newsletter{
-  background-color: var(--dark-green-color);
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 70px);
-}
-
-.team{
-  min-height: 100vh;
-  padding: 40px;
-  position: relative;
-  background-color: var(--white-color);
-  padding-bottom:65px;
-
-  h2{
-    padding-top:60px;
-    color:var(--blue-color);
-    text-transform: uppercase;
-  }
-
-  .profile-list{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    padding-top: 40px;
-    @media (max-width: 550px) {
-      padding-top: 0px;
-      flex-direction: column;
-    }
-  }
-
-  h2{
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .profile-container{
-    margin: 5px;
-  }
-}
-
 
 .hero {
   position: relative;
@@ -151,4 +115,105 @@ export default {
       fill: #f1f1f1;
   }
 }
+
+.app{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 550px) {
+    padding-top: 0px;
+    flex-direction: column;
+  }
+  .left{
+    min-height: 100vh;
+    width: 50%;
+    background-color: var(--red-color);
+    @media (max-width: 550px) {
+      width: 100%;
+    }
+  }
+  .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 10%;
+    top: 0;
+    min-height: 100vh;
+    width: 50%;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    text-align: center;
+    
+    @media (max-width: 550px) {
+      width: 100%;
+    }
+
+    .line {
+      text-decoration: line-through;
+      text-decoration-color: var(--red-color);
+    }
+    .red{
+      transform: rotate(-25deg);
+      top: -1em;
+      left: 1em;
+      position: relative;
+      color: var(--red-color);
+
+    }
+    img{
+      width: 13em;
+      padding-bottom: 2em;
+    }
+  }
+}
+
+.team{
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--white-color);
+  padding-bottom:65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2{
+    padding-top:60px;
+    color:var(--blue-color);
+    text-transform: uppercase;
+  }
+
+  .profile-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    padding-top: 40px;
+    @media (max-width: 550px) {
+      padding-top: 0px;
+      flex-direction: column;
+    }
+  }
+
+  h2{
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .profile-container{
+    margin: 5px;
+  }
+}
+
+.newsletter{
+  background-color: var(--dark-green-color);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+}
+
+
 </style>

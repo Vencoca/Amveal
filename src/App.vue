@@ -17,9 +17,6 @@ export default {
 
 <style >
   :root{
-    --main-color: #36424e;
-    --main-color-darker: rgb(73, 158, 207);
-    --secondary-color: rgb(73, 73, 73);
     --blue-color: #36424e;
     --dark-green-color: #3c7072;
     --light-green-color: #498989;
