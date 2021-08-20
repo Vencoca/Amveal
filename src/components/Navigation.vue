@@ -1,26 +1,17 @@
 <template>
-  <header :class="{'scrolled-nav' : scrolledNav}">
+  <header id = "navigation" class="header" :class="{'scrolled-nav' : scrolledNav}">
     <nav>
-      <div class="branding">
-        <a @click='scroll("Home");'><img src="@/assets/logo.svg" alt="" srcset=""></a>
-      </div>
-      <ul v-show = "!mobile" class="navigation">
-        <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Application");' href="#Application">App</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
+      <a class="color-change" @click='scroll("Home");'><img src="@/assets/logo.svg" alt="" srcset=""></a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon color-change" for="menu-btn">
+        <span class="navicon"></span>
+      </label>
+      <ul class="menu">
+        <li><a class="link active color-change" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
+        <li><a class="link color-change" onclick="event.preventDefault()" @click='scroll("Application");' href="#Application">App</a></li>
+        <li><a class="link color-change" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
+        <li><a class="link color-change" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
       </ul>
-    <div class="icon">
-      <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav}"></i>
-    </div>
-    <transition name="mobile-nav">
-      <ul v-show = "mobileNav" class="dropdown-nav">
-        <li><a class="link active" onclick="event.preventDefault()" @click='scroll("Home");' href="#Home">Home</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Application");' href="#Application">App</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Team");' href="#Team">Team</a></li>
-        <li><a class="link" onclick="event.preventDefault()" @click='scroll("Newsletter");' href="#Newsletter">Newsletter</a></li>
-      </ul>
-    </transition>
     </nav>
   </header>
 </template>
@@ -31,41 +22,43 @@ export default {
   data() {
     return{
       scrolledNav: null,
-      mobile: null,
-      mobileNav: null,
-      windowWidth: null,
     };
   },
-  created(){
-    window.addEventListener('resize', this.checkScreen);
-    this.checkScreen();
-  },
+
   mounted(){
+    document.getElementById("menu-btn").addEventListener('change', this.showMenu);
     window.addEventListener('scroll', this.updateScroll);
+  },
+  created () {
+    this.SECTIONS = document.getElementsByTagName('section');
   },
   methods: {
     scroll(element){ 
-      document.getElementById(element).scrollIntoView(true); 
-      this.mobileNav = false;
-    },
-    toggleMobileNav(){
-      this.mobileNav = !this.mobileNav
-    },
-    checkScreen(){
-      this.windowWidth = window.innerWidth;
-      if(this.windowWidth <= 850){
-        this.mobile = true;
-        return;
+      document.getElementById(element).scrollIntoView(true);
+      if (document.getElementById("menu-btn").checked){
+        document.getElementById("menu-btn").click();
       }
-      this.mobile = false;
-      this.mobileNav = false;
-      return;
     },
-
+    showMenu(){
+      if(document.getElementById("menu-btn").checked){
+        document.getElementById("navigation").style.backgroundColor = "var(--blue-color)";
+        document.querySelectorAll('.dark').forEach(function(element){
+              element.classList.remove('dark');
+        })
+      } else {
+        document.getElementById("navigation").style.backgroundColor = "transparent";
+        const scrollPosition = window.scrollY
+        if (document.getElementById("Team").offsetTop <= scrollPosition) {
+          document.querySelectorAll('.color-change').forEach(function(element){
+              element.classList.add('dark');
+          })
+        }
+      }
+      
+    },
     updateScroll() {
       const scrollPosition = window.scrollY
-      var sections = document.getElementsByTagName('section');
-      sections.forEach(element => {
+      this.SECTIONS.forEach(element => {
         if (element.offsetTop <= scrollPosition) {
           document.querySelectorAll('.active').forEach(function(element){
             element.classList.remove('active');
@@ -74,16 +67,18 @@ export default {
             element.setAttribute('class', element.getAttribute('class')+' active');
           })
           if(element.id == "Team"){
-            document.querySelectorAll('.link').forEach(function(element){
-              element.classList.add('dark');
-            })
+            if(!document.getElementById("menu-btn").checked){
+              document.querySelectorAll('.color-change').forEach(function(element){
+                element.classList.add('dark');
+              })
+            }
           } else {
-            document.querySelectorAll('.link').forEach(function(element){
+            document.querySelectorAll('.color-change').forEach(function(element){
               element.classList.remove('dark');
             })
           }
         } else if (element.id == "Newsletter"){
-          if (element.offsetTop <= scrollPosition + 70) {
+          if (element.offsetTop <= scrollPosition + 75) {
             document.querySelectorAll('.active').forEach(function(element){
               element.classList.remove('active');
             })
@@ -93,7 +88,6 @@ export default {
           }
         }
       });
-
       if(scrollPosition > 50){
         this.scrolledNav = true;
         return;
@@ -106,162 +100,202 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .dark{
-  color:var(--blue-color) !important;
+  color:var(--blue-color) !important; 
+  span {
+    background: var(--blue-color) !important;
+  }
+  span::before{
+    background: var(--blue-color) !important;
+  }
+  span::after{
+    background: var(--blue-color) !important;
+  } 
+  img{
+    filter: invert(1);
+  }
 }
 
-header{
+.active{
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--red-color) !important;
+  border-color: var(--red-color) !important;
+}
+
+.header {
   background-color: var(--blue-color);
-  z-index: 99;
-  width: 100%;
   position: fixed;
-  transition: 0.5s ease all;
-  color: #fff;
+  width: 100%;
+  z-index: 99;
+  transition: transform 0.5s ease all;
+  padding: 14px 0;
+}
 
-  a{
-   cursor: pointer; 
-   -webkit-user-select: none;  /* Chrome all / Safari all */
-   -moz-user-select: none;     /* Firefox all */
-   -ms-user-select: none;      /* IE 10+ */
-   user-select: none;          /* Likely future */     
-  }
-  
+.scrolled-nav {
+  background-color: transparent;
+  padding: 10px 0;
   nav{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    padding: 12px 0;
-    transition: 0.5s ease all;
-    width: 90%;
-    margin: 0 auto;
-    user-select: none;  
-    @media(min-width: 1140px) {
-      max-width: 1140px;
-    }
-
-    ul,
-    .link{
-      font-weight: 500;
-      color: #fff;
-      list-style: none;
-      text-decoration: none;
-    }
-
-    li{
-      text-transform: uppercase;
-      padding: 16px;
-      margin-left: 16px;
-    }
-
-    .link{
-      font-size: 14px;
-      transition: 0.5 ease all;
-      padding-bottom: 4px;
-      border-bottom: 1px solid transparent;
-
-      &:hover{
-        cursor: pointer;
-        color: var(--red-color);
-        border-color: var(--red-color);
-      }
-    }
-
-    .active{
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--red-color) !important;
-      border-color: var(--red-color) !important;
-    }
-
-    .branding {
-      display: flex;
-      align-items: center;
-      img{
-        width: var(--logo-size);
-        transition: 0.5s ease all;
-        padding-top: 5px;
-      }
-    }
-
-    .navigation{
-      display: flex;
-      align-items: center;
-      flex: 1;
-      justify-content: flex-end;
-    }
-    
-    .icon{
-      display: flex;
-      align-items: center;
-      position: absolute;
-      top: 0;
-      right: 24px;
-      height: 100%;
-      
-      i{
-        
-        cursor: pointer;
-        font-size: 24px;
-        transition: 0.8s ease all;
-      }
-    }
-
-    .icon-active{
-      transform: rotate(180deg);
-      -webkit-transform: rotate(180deg);
-      -moz-transform: rotate(180deg);
-    }
-
-    .dropdown-nav{ 
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      width: 100%;
-      max-width: 250px;
-      height: 100%;
-      background-color:  #fff;
-      top: 0;
-      left: 0;
-
-
-      li{
-        margin-left: 0;
-        .link {
-          color: #000; 
-        }
-      }
-    }
-    .mobile-nav-enter-active,
-    .mobile-nav-leave-active{
-      transition: 1s ease all;
-    }
-
-    .mobile-nav-enter-from,
-    .mobile-nav-leave-to {
-      transform: translateX(-250px);
-      -webkit-transform: translateX(-250px);
-    }
-
-    .mobile-nav-enter-to{
-      transform: translateX(0);
-      -webkit-transform: translateX(0);
+    img{
+      margin-top: 5px;
+      width: 40px;
     }
   }
 }
-.scrolled-nav {
-  background-color:  transparent;
-  nav{
-    padding: 8px 0;
-    .branding {
-      img{
-        width: 40px;
-        filter: invert(1);
-      }
-    }
-    i{
-      filter: invert(1);
-    }
+
+.header nav{
+  flex-direction: row;
+  width: 100%;
+  margin: 0px auto;
+  user-select: none;  
+  @media(min-width: 1140px) {
+    max-width: 1140px;
+  }
+}
+
+.header img{
+  width: var(--logo-size);
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+
+
+.link{
+  font-weight: 500;
+  color: #fff;
+  list-style: none;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.5 ease all;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+
+  &:hover{
+    cursor: pointer;
+    color: var(--red-color);
+    border-color: var(--red-color);
+  }
+}  
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.header li {
+  text-transform: uppercase;
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+
+.header .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .5s ease all;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  cursor: pointer;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: var(--white-color);
+  display: block;
+  height: 2px;
+  position: relative;
+  width: 20px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: var(--white-color);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: transform .2s ease-out;
+  width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+
+  max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+  .header li {
+    float: left;
+  }
+  .header li {
+    padding:  12px 22px 14px 22px;
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
   }
 }
 </style>

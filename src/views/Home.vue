@@ -7,16 +7,17 @@
         <h2>
           Make hotel services easily accessible.
         </h2>
-        <hr />
-      </div>
+        <hr />      </div>
     </section>
     <section id="Application" class="app">
-      <div class="left"></div>
+      <div class="left">
+        <img src="@/assets/iphony.png" alt="" srcset="">
+      </div>
       <div class="right">
         <h1>GET APP</h1>
         <h1 class="line">NOW</h1>
         <h1 class="red">SOON</h1>
-        <img src="@/assets/googleandapple.png" alt="" srcset="">
+        <img src="@/assets/buttons.png" alt="" srcset="">
       </div>
 
     </section>
@@ -53,6 +54,7 @@ export default {
 .hero {
   position: relative;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: var(--light-green-color);
 
   img {
@@ -95,25 +97,6 @@ export default {
       margin-top: 16px;
     }
   }
-  .wave-divider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-  }
-
-  .wave-divider svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 55px;
-  }
-
-  .wave-divider .shape-fill {
-      fill: #f1f1f1;
-  }
 }
 
 .app{
@@ -129,7 +112,25 @@ export default {
     width: 50%;
     background-color: var(--red-color);
     @media (max-width: 550px) {
+      overflow: hidden;
       width: 100%;
+    }
+    overflow: visible;
+    z-index: 3;
+    img{
+        position:relative;
+        right:10%;
+        bottom: 20%;
+        height: 120%;
+        width: 120%;
+        object-fit: contain;
+        padding: 10px;
+        @media (max-width: 550px) {
+          left:-15%;
+          bottom: 20%;
+          height: 130%;
+          width: 130%;
+        }
     }
   }
   .right{
@@ -213,7 +214,6 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 70px);
+  min-height: calc(var(--vh, 1vh) * 100 - 70px);
 }
-
-
 </style>
