@@ -1,8 +1,8 @@
 <?php
 $host = "127.0.0.1"; 
-$user = "dinerapp.net"; 
-$password = "GmdkdcjDwC7g"; 
-$dbname = "dinerappnet1"; 
+$user = "amveal.com"; 
+$password = "cw4TsEw7jymr"; 
+$dbname = "amvealcom1"; 
 $id = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);

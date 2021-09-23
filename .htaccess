@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteBase /
+
+
+
+RewriteCond %{ENV:HTTPS} !^.*on
+
+RewriteRule ^(.*)$ https://www.amveal.com/ [R,L]
+
+ErrorDocument 404 https://www.amveal.com/

@@ -46,7 +46,7 @@ export default {
               element.classList.remove('dark');
         })
       } else {
-        document.getElementById("navigation").style.backgroundColor = "transparent";
+        document.getElementById("navigation").style.backgroundColor = "";
         const scrollPosition = window.scrollY
         if (document.getElementById("Team").offsetTop <= scrollPosition) {
           document.querySelectorAll('.color-change').forEach(function(element){
@@ -54,7 +54,6 @@ export default {
           })
         }
       }
-      
     },
     updateScroll() {
       const scrollPosition = window.scrollY

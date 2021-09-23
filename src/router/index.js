@@ -7,7 +7,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: 'Diner | Make hotel services easily accessible' 
+      title: 'Amveal | Make hotel services easily accessible' 
     }
   },
 ];

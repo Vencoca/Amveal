@@ -2,7 +2,7 @@
   <div class="home">
     <section id='Home' class="hero">
       <div class=" container hero-text">
-        <h4>Diner app</h4>
+        <h4>Amveal</h4>
         <hr style="color:white"/>
         <h2>
           Make hotel services easily accessible.
@@ -24,9 +24,10 @@
     <section id="Team" class="team">
       <h2>Our Team</h2>
       <div class="profile-list">
-        <Profile firstname="Václav" lastname="Kesler" job="Front-end devloper" imglink="1.jpg" email="kesler@dinerapp.net" v-bind:lands="['cz','gb','de','pl']"/>
-        <Profile firstname="Sandra" lastname="Walentynowicz" job="Graphic designer" imglink="2.jpg" email="walentynowicz@dinerapp.net" v-bind:lands="['pl','gb']"/> 
-        <Profile firstname="Jan" lastname="Paleček" job="Bussiness" imglink="3.jpg" email="palecek@dinerapp.net" v-bind:lands="['cz','gb','pl']"/>
+        <Profile firstname="Václav" lastname="Kesler" job="Front-end developer" imglink="1.jpg" email="kesler@amveal.com" v-bind:lands="['cz','gb','de','pl']"/>
+        <Profile firstname="Sandra" lastname="Walentynowicz" job="Graphic designer" imglink="2.jpg" email="walentynowicz@amveal.com" v-bind:lands="['pl','gb']"/> 
+        <Profile firstname="Jan" lastname="Paleček" job="Bussiness" imglink="3.jpg" email="palecek@amveal.com" v-bind:lands="['cz','gb','pl']"/>
+        <Profile firstname="Jakub" lastname="Drábek" job="Back-end developer" imglink="4.jpg" email="drabek@amveal.com" v-bind:lands="['cz','gb']"/>
       </div>
     </section>
     <section id="Newsletter" class="newsletter">
