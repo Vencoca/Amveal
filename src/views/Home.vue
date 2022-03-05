@@ -30,6 +30,9 @@
         <Profile firstname="Jakub" lastname="Drábek" job="Back-end developer" imglink="4.jpg" email="drabek@amveal.com" v-bind:lands="['cz','gb']"/>
       </div>
     </section>
+    <section id="FAQ" style = "background-color: var(--blue-color);">
+      <FAQ/>
+    </section>
     <section id="Newsletter" class="newsletter">
         <Newsletter/>
     </section>
@@ -39,6 +42,7 @@
 <script>
 import Profile from '../components/Profile.vue';
 import Newsletter from '../components/Newsletter.vue';
+import FAQ from '../components/FAQ.vue';
 // @ is an alias to /src
 
 export default {
@@ -46,6 +50,7 @@ export default {
   components: {
     Profile,
     Newsletter,
+    FAQ,
   },
 };
 </script>
