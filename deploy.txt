@@ -1,0 +1,6 @@
+git init
+git remote add origin https://github.com/Vencoca/Amveal.git
+git checkout --orphan 'gh-pages'
+git add --all
+git commit -m "gh-pages"
+git push origin HEAD:gh-pages --force
