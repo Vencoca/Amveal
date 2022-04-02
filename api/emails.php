@@ -1,7 +1,7 @@
 <?php
 $host = "127.0.0.1"; 
 $user = "amveal.com"; 
-$password = "cw4TsEw7jymr"; 
+$password = ""; 
 $dbname = "amvealcom1"; 
 $id = '';
 
