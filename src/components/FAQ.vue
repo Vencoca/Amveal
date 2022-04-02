@@ -53,6 +53,7 @@ h5{
     grid-template-columns: 1fr 1fr;
     div{
         padding: 3rem;
+        padding-bottom: 4.5rem;
         .header{
             font-weight: bold;
             margin-bottom: 0.5rem;
