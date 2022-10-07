@@ -1,24 +1,2 @@
-# diner
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Amveal
+Single page website for project. <br> <br>Curerntly "frozen" and hosted [here](https://vencoca.github.io/Amveal/) on github pages. 
